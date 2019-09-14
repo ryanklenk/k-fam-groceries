@@ -38,6 +38,7 @@ const Checklist = () => {
   const [hasError, setErrors] = useState(false);
   const [loading, setLoading] = useState(true);
   const [checklistItems, setChecklistItems] = useState({});
+  const [cards, setCards] = useState({});
   const classes = useStyles();
 
   async function fetchData() {
@@ -88,11 +89,10 @@ const Checklist = () => {
   if (loading) {
     return <span>Loading</span>;
   }
-
   return (
     <List className={classes.root}>
       {checklistItems.map(checklistItem =>
-        <ChecklistItem item={checklistItem} />
+        <ChecklistItem key={checklistItem.id} item={checklistItem} />
       )}
     </List>
   );

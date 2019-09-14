@@ -92,14 +92,7 @@ const ChecklistItem = item => {
 
   return (
     <div>
-      <ListItem
-        key={checklistItem.id}
-        alignItems="center"
-        dense
-        button
-        onClick={handleToggle}
-      >
-
+      <ListItem alignItems="center" dense button onClick={handleToggle}>
         <ListItemAvatar>
           {loading
             ? <CircularProgress className={classes.progress} />

@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Container, AppBar, Toolbar, Typography } from "@material-ui/core";
 
-import Checklist from "./Checklist.js";
+import ChecklistByIngredient from "./ChecklistByIngredient.js";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -30,7 +30,7 @@ function App() {
         </Toolbar>
       </AppBar>
       <Container maxWidth="xl" className={classes.container}>
-        <Checklist />
+        <ChecklistByIngredient />
       </Container>
     </div>
   );

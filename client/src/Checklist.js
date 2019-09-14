@@ -19,26 +19,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const compareItemName = (a, b) => {
-  const itemA = a.item.name.toUpperCase();
-  const itemB = b.item.name.toUpperCase();
-
-  let comparison = 0;
-
-  if (itemA < itemB) {
-    comparison = 1;
-  } else if (itemB < itemA) {
-    comparison = -1;
-  }
-
-  return comparison;
-};
-
 const Checklist = () => {
   const [hasError, setErrors] = useState(false);
   const [loading, setLoading] = useState(true);
   const [checklistItems, setChecklistItems] = useState({});
-  const [cards, setCards] = useState({});
   const classes = useStyles();
 
   async function fetchData() {
@@ -67,8 +51,11 @@ const Checklist = () => {
           );
         });
 
-        combinedChecklistItems = combinedChecklistItems.flat();
-        setChecklistItems(combinedChecklistItems);
+        setChecklistItems(
+          combinedChecklistItems
+            .flat()
+            .sort((a, b) => (a.name > b.name ? 1 : -1))
+        );
         setLoading(false);
       })
       .catch(err => {
@@ -89,6 +76,7 @@ const Checklist = () => {
   if (loading) {
     return <span>Loading</span>;
   }
+
   return (
     <List className={classes.root}>
       {checklistItems.map(checklistItem =>
